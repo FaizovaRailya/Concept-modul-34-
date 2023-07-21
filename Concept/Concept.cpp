@@ -8,11 +8,11 @@ template <typename T> concept ComplexConcept = requires(const T v) {
 
 class Empty {};
 
-class With_a_destructor {
+class With_destructor {
     int _v;
 public:
-    With_a_destructor(const int v) :_v(v) {}
-    virtual ~With_a_destructor() {}
+    With_destructor(const int v) :_v(v) {}
+    virtual ~With_destructor() {}
     int hash() const {
         return _v;
     }
@@ -42,8 +42,8 @@ template <ComplexConcept T> void concept_method(T val) {
 int main() {
     //Empty e();
     //concept_method<Empty>(e); // ошибка т.к. в классе нет методов hash() и toString()
-    //With_a_destructor d(5);
-    //concept_method<With_a_destructor>(d); // ошибка т.к. в классе есть деструктор
+    //With_destructor d(5);
+    //concept_method<With_destructor>(d); // ошибка т.к. в классе есть деструктор
 
     Correct c(10);
     concept_method<Correct>(c);
